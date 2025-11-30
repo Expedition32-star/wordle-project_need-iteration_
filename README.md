@@ -10,3 +10,6 @@ Hola!最近还好吗😊
 
 ## 作者
 Expedition32-star
+
+## thinking……
+Maybe we can repeat this ?
