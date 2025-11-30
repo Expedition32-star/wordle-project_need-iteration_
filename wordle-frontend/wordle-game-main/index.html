@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>车的 Wordle - 学习版</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+
+  <section id="start-screen" class="screen">
+    <h1>车的Wordle</h1>
+    <p class="subtitle">不要猜crush的心了  来猜星际密码🪐</p>
+    
+    <button id="startBtn">开始游戏</button>
+</section>
+
+  <section id="game-screen"class="screen" style="display:none;">
+    <h1>我猜着你的心～</h1>
+    <p class="subtitle">在6次内猜出5个字母的单词。</p>
+
+    <div id="board" class="board" aria-label="Wordle board"></div>
+    <div id="keyboard" class="keyboard" aria-label="Keyboard"></div>
+
+    <div class="controls">
+      <button id="restartBtn">重新开始</button>
+      <div id="message" class="message" ></div>
+    </div>
+</section>
+    <footer class="footer">
+      <small>今天成为宇宙最强了吗</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

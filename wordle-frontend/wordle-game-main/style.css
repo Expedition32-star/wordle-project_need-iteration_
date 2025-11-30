@@ -1,0 +1,213 @@
+/* 导入像素风或代码风字体（免费Google字体） */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  min-height: 100vh;        /* 保证至少撑满视口，但不固定高度 */
+  background: radial-gradient(circle at 20% 20%, #1b2735, #090a0f);
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;  /* 从顶部开始排列，避免垂直居中裁切底部 */
+  justify-content: center;
+  padding: 2rem 1rem;       /* 顶部空间，避免紧贴顶部（也保证小屏能滚动） */
+  box-sizing: border-box;
+  overflow: auto;           /* 允许页面滚动，避免裁切内容 */
+  position: relative;
+}
+
+/* 宇宙星云背景效果 */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 10% 30%, rgba(100, 0, 255, 0.2), transparent 60%),
+    radial-gradient(circle at 70% 60%, rgba(0, 180, 255, 0.15), transparent 70%),
+    radial-gradient(circle at 90% 10%, rgba(255, 0, 200, 0.1), transparent 70%);
+  filter: blur(100px);
+  animation: float 20s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+/* 柔和流动动画 */
+@keyframes float {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.2) translate(-30px, -20px); }
+}
+
+/* 小星星：更自然的闪烁（非白点） */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.3;
+  z-index: -1;
+}
+
+
+
+ 
+/* 主体容器 */
+.container {
+  text-align: center;
+  animation: fadeIn 2.5s ease;
+}
+
+/* 标题 */
+.title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.8rem;
+  color: #b3e5fc;
+  text-shadow: 0 0 10px rgba(100, 180, 255, 0.7);
+}
+
+/* 副标题 */
+.subtitle {
+  color: #a9a9ff;
+  margin-bottom: 30px;
+}
+
+/* 按钮 */
+#start-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(140, 150, 255, 0.4);
+}
+
+#start-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #8f94fb, #4e54c8);
+  box-shadow: 0 0 30px rgba(180, 200, 255, 0.9), 0 0 60px rgba(150, 180, 255, 0.5);
+  text-shadow: 0 0 10px rgba(200, 220, 255, 0.8);
+  transition: all 0.25s ease;
+}
+
+
+
+/* 淡入效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.controls {
+  text-align: center;
+  margin-bottom: 30px; /* 控制“重新开始”与footer的距离 */
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 0.9em;
+}
+.footer small {
+  color: #b0a8ff;
+  text-shadow: 0 0 8px rgba(180, 180, 255, 0.5);
+}
+
+/* 所有文字加柔光效果 */
+body, h1, h2, h3, p, small, button, div, span {
+  text-shadow: 0 0 8px rgba(180, 180, 255, 0.4);
+}
+.tile {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #555;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  background-color: #111;
+  color: white;
+  margin: 3px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.tile.correct {
+  background-color: #538d4e; /* 绿 */
+  border-color: #538d4e;
+}
+
+.tile.present {
+  background-color: #b59f3b; /* 黄 */
+  border-color: #b59f3b;
+}
+
+.tile.absent {
+  background-color: #3a3a3c; /* 灰 */
+  border-color: #3a3a3c;
+}
+
+/* 🎯 棋盘布局（原版 Wordle 尺寸） */
+#board {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  grid-template-rows: repeat(6, 50px);
+  gap: 6px;
+  justify-content: center;
+  margin: 2rem auto 0 auto;
+}
+
+/* 单个方格样式 */
+.tile {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #d3d6da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: white;
+  color: black;
+  box-sizing: border-box;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+
+/* 🎹 键盘区域 */
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px; /* 与棋盘的距离 */
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.keyboard-row button {
+  width: 43px;
+  height: 58px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #d3d6da;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.keyboard-row button:active {
+  transform: scale(0.95);
+}
+.keyboard-row button.enter,
+.keyboard-row button.delete {
+  width: 65px;
+}
